@@ -21,4 +21,13 @@ Route::post('checklogin','App\Http\Controllers\Homecontroller@checklogin');
 Route::get('forgot','App\Http\Controllers\Homecontroller@forgotpassword');
 
 
-Route::get('home','App\Http\Controllers\Homecontroller@home');
+Route::group(['middleware'=>['Customauth']],function(){
+  Route::get('admin/dashboard','App\Http\Controllers\Homecontroller@dashboard');
+
+  ### App Intro Video ###
+
+  Route::get('admin/app_intro_video','App\Http\Controllers\Masters@app_intro_video');
+  Route::post('save_intro_video','App\Http\Controllers\Masters@save_intro_video');
+
+
+});

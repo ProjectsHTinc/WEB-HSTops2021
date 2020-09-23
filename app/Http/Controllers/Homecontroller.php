@@ -15,15 +15,13 @@ class Homecontroller extends Controller
       return view('login');
     }
 
-    function home(){
+    function dashboard(){
       $role_type = session('user_session')->admin_role_type;
       if($role_type=='1'){
-        return view('Admin.home');
-      }else{
-        echo "subadmin";
-      }
-
-
+          return view('admin.dashboard');
+        }else{
+          echo "subadmin";
+        }
     }
 
     function checklogin(Request $request)
@@ -36,8 +34,7 @@ class Homecontroller extends Controller
         if($user){
             Auth::login($user);
             $request->session()->put('user_session', $user);
-
-            return redirect('home');
+            return redirect('admin/dashboard');
         }else{
             return redirect()->back()->with(array('status'=>'danger','msg'=>"Invalid login credentials!."));
 
