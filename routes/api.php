@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('generateOTP','App\Http\Controllers\Apicontroller@generateOTP');
+Route::post('login','App\Http\Controllers\Apicontroller@login');
+
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
